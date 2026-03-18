@@ -514,7 +514,56 @@ h2 {
 }
 .dot-green { background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 2s infinite; }
 .dot-blue  { background: #60a5fa; }
+<div class="project-card reveal">
+  <div class="project-num">06</div>
+  <div class="project-body">
+    <h3 class="project-title">Installation et configuration de Zabbix</h3>
+    <p class="project-desc">
+      Déploiement de Zabbix sur une VM Debian pour la supervision réseau.
+      Configuration des agents sur les hôtes, création de triggers et alertes,
+      mise en place de dashboards de monitoring (CPU, RAM, interfaces réseau,
+      disponibilité des services). Intégration avec Grafana pour la visualisation.
+    </p>
+    <div class="project-meta">
+      <span class="project-badge badge-blue">Zabbix</span>
+      <span class="project-badge badge-cyan">Debian</span>
+      <span class="project-badge badge-green">Grafana</span>
+      <span class="project-badge badge-purple">Supervision</span>
+    </div>
+  </div>
+  <div class="project-aside">
+    <span class="project-type">HOMELAB<br>COURS</span>
+    <div class="project-status">
+      <div class="dot dot-green"></div>
+      <span style="color:var(--green);font-size:0.68rem;font-family:var(--mono)">Opérationnel</span>
+    </div>
+  </div>
+</div>
 
+<div class="project-card reveal">
+  <div class="project-num">07</div>
+  <div class="project-body">
+    <h3 class="project-title">Architecture Réseau — Routage Inter-VLAN sur Cisco</h3>
+    <p class="project-desc">
+      Conception et configuration d'une architecture réseau multi-VLAN sur Cisco Packet Tracer.
+      Mise en place du routage inter-VLAN via router-on-a-stick, configuration des VLANs
+      sur les switches (trunk/access), adressage VLSM, ACL de sécurité et tests de connectivité.
+    </p>
+    <div class="project-meta">
+      <span class="project-badge badge-blue">Cisco</span>
+      <span class="project-badge badge-cyan">VLAN</span>
+      <span class="project-badge badge-green">Packet Tracer</span>
+      <span class="project-badge badge-purple">Routage</span>
+    </div>
+  </div>
+  <div class="project-aside">
+    <span class="project-type">COURS<br>BTS SIO</span>
+    <div class="project-status">
+      <div class="dot dot-blue"></div>
+      <span style="color:#60a5fa;font-size:0.68rem;font-family:var(--mono)">Réalisé</span>
+    </div>
+  </div>
+</div>
 /* ── EXPÉRIENCE ───────────────────────────────────────────────── */
 #experience .timeline {
   margin-top: 3rem;
@@ -985,25 +1034,29 @@ footer span { color: var(--cyan); }
     </div>
 
     <div class="project-card reveal">
-      <div class="project-num">04</div>
-      <div class="project-body">
-        <h3 class="project-title">Diagnostic NVR Hikvision (3S Secure)</h3>
-        <p class="project-desc">
-          Diagnostic et résolution d'une panne sur un enregistreur NVR Hikvision :
-          identification d'un câble défectueux via testeur TDR Dahua,
-          remplacement et remise en service des caméras IP.
-        </p>
-        <div class="project-meta">
-          <span class="project-badge badge-blue">Hikvision</span>
-          <span class="project-badge badge-cyan">Caméras IP</span>
-          <span class="project-badge badge-green">TDR Dahua</span>
-        </div>
-      </div>
-      <div class="project-aside">
-        <span class="project-type">ALTERNANCE<br>3S SECURE</span>
-        <div class="project-status">
-          <div class="dot dot-blue"></div>
-          <span style="color:#60a5fa;font-size:0.68rem;font-family:var(--mono)">Résolu</span>
+     <div class="project-num">04</div>
+  <div class="project-body">
+    <h3 class="project-title">Diagnostic NVR Hikvision & Dahua (3S Secure)</h3>
+    <p class="project-desc">
+      Diagnostic et résolution de pannes sur des enregistreurs NVR Hikvision et Dahua :
+      identification de câbles défectueux via testeur TDR Dahua,
+      remplacement et remise en service des caméras IP.
+    </p>
+    <div class="project-meta">
+      <span class="project-badge badge-blue">Hikvision</span>
+      <span class="project-badge badge-cyan">Dahua</span>
+      <span class="project-badge badge-green">TDR</span>
+      <span class="project-badge badge-purple">Caméras IP</span>
+    </div>
+  </div>
+  <div class="project-aside">
+    <span class="project-type">ALTERNANCE<br>3S SECURE</span>
+    <div class="project-status">
+      <div class="dot dot-blue"></div>
+      <span style="color:#60a5fa;font-size:0.68rem;font-family:var(--mono)">Résolu</span>
+    </div>
+  </div>
+</div>
         </div>
       </div>
     </div>
