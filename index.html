@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marvyn Bartolomucci – Portfolio BTS SIO SISR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Variables ────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0a0e1a;
+  --bg2:       #0f1525;
+  --bg3:       #161d30;
+  --navy:      #1e2761;
+  --blue:      #2563eb;
+  --cyan:      #22d3ee;
+  --cyan2:     #67e8f9;
+  --green:     #22c55e;
+  --white:     #f0f4ff;
+  --gray:      #8892a4;
+  --border:    rgba(34,211,238,0.15);
+  --mono:      'Space Mono', monospace;
+  --sans:      'Syne', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--sans);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── Curseur custom ───────────────────────────────────────────── */
+.cursor {
+  position: fixed;
+  width: 12px; height: 12px;
+  background: var(--cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.1s;
+  mix-blend-mode: screen;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--cyan);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: all 0.15s ease;
+  mix-blend-mode: screen;
+}
+
+/* ── Bruit de fond ────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Grille de fond ───────────────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Nav ──────────────────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3rem;
+  background: rgba(10,14,26,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--cyan);
+  letter-spacing: 0.05em;
+}
+.nav-logo span { color: var(--gray); }
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--gray);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--cyan); }
+
+/* ── Sections communes ────────────────────────────────────────── */
+section {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+.section-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--cyan);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: var(--cyan);
+}
+
+h2 {
+  font-family: var(--sans);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 100%;
+  padding: 0 3rem;
+  position: relative;
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-tag {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--cyan);
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.6s 0.2s forwards;
+}
+
+.hero-name {
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 800;
+  line-height: 0.95;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.35s forwards;
+}
+.hero-name .line2 {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--cyan);
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: var(--gray);
+  line-height: 1.7;
+  max-width: 540px;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.5s forwards;
+}
+.hero-desc strong { color: var(--white); }
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.65s forwards;
+}
+
+.btn {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  padding: 0.85rem 2rem;
+  border-radius: 4px;
+  cursor: none;
+  transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-primary {
+  background: var(--cyan);
+  color: var(--bg);
+  border: none;
+  font-weight: 700;
+}
+.btn-primary:hover { background: var(--cyan2); transform: translateY(-2px); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--cyan);
+  border: 1px solid var(--cyan);
+}
+.btn-outline:hover { background: rgba(34,211,238,0.08); transform: translateY(-2px); }
+
+/* Stat bloc hero */
+.hero-stats {
+  position: absolute;
+  right: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  opacity: 0;
+  animation: fadeLeft 0.8s 0.8s forwards;
+}
+.stat {
+  text-align: right;
+  border-right: 2px solid var(--cyan);
+  padding-right: 1.2rem;
+}
+.stat-num {
+  font-family: var(--mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cyan);
+  display: block;
+}
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--gray);
+  letter-spacing: 0.05em;
+}
+
+/* scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--gray);
+  letter-spacing: 0.15em;
+  opacity: 0;
+  animation: fadeUp 1s 1.2s forwards;
+}
+.scroll-hint::after {
+  content: '';
+  width: 1px;
+  height: 2.5rem;
+  background: linear-gradient(to bottom, var(--cyan), transparent);
+  animation: scrollPulse 1.5s ease-in-out infinite;
+}
+
+/* ── À PROPOS ─────────────────────────────────────────────────── */
+#about .about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin-top: 3rem;
+}
+
+.about-text p {
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+}
+.about-text p strong { color: var(--white); }
+
+.about-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 0.9rem;
+}
+.info-row:last-child { border-bottom: none; }
+.info-key {
+  font-family: var(--mono);
+  color: var(--gray);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+.info-val { color: var(--white); font-weight: 600; }
+.info-val.green { color: var(--green); }
+
+/* ── COMPÉTENCES ──────────────────────────────────────────────── */
+#skills .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.skill-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.8rem;
+  transition: border-color 0.3s, transform 0.3s;
+  cursor: none;
+}
+.skill-card:hover {
+  border-color: var(--cyan);
+  transform: translateY(-4px);
+}
+
+.skill-icon {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+.skill-title {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.8rem;
+}
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+.tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 3px;
+  background: rgba(34,211,238,0.08);
+  color: var(--cyan2);
+  border: 1px solid rgba(34,211,238,0.2);
+}
+
+/* Barres de maîtrise */
+.skill-bar-wrap { margin-top: 0.5rem; }
+.skill-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--gray);
+  margin-bottom: 0.3rem;
+}
+.skill-bar {
+  height: 3px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.6rem;
+}
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1s ease;
+}
+.skill-bar-fill.animated { transform: scaleX(1); }
+
+/* ── PROJETS ──────────────────────────────────────────────────── */
+#projects .projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.project-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 2.2rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 2rem;
+  align-items: start;
+  transition: border-color 0.3s, background 0.3s;
+  cursor: none;
+}
+.project-card:hover {
+  border-color: var(--cyan);
+  background: var(--bg3);
+}
+
+.project-num {
+  font-family: var(--mono);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(34,211,238,0.25);
+  line-height: 1;
+  min-width: 3rem;
+}
+
+.project-body {}
+.project-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.project-desc {
+  color: var(--gray);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+.project-meta {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.project-badge {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 20px;
+  border: 1px solid;
+  letter-spacing: 0.05em;
+}
+.badge-blue  { color: #60a5fa; border-color: #60a5fa44; background: #60a5fa0a; }
+.badge-cyan  { color: var(--cyan); border-color: #22d3ee44; background: #22d3ee0a; }
+.badge-green { color: var(--green); border-color: #22c55e44; background: #22c55e0a; }
+.badge-purple{ color: #a78bfa; border-color: #a78bfa44; background: #a78bfa0a; }
+
+.project-aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+}
+.project-type {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--gray);
+  letter-spacing: 0.1em;
+  text-align: right;
+}
+.project-status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+}
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+}
+.dot-green { background: var(--green); box-shadow: 0 0 6px var(--green); animation: pulse 2s infinite; }
+.dot-blue  { background: #60a5fa; }
+
+/* ── EXPÉRIENCE ───────────────────────────────────────────────── */
+#experience .timeline {
+  margin-top: 3rem;
+  position: relative;
+  padding-left: 2rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--cyan), transparent);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 3rem;
+  padding-left: 2rem;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.35rem;
+  top: 0.35rem;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+}
+
+.tl-date {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+.tl-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+.tl-company {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--gray);
+  margin-bottom: 0.8rem;
+}
+.tl-desc {
+  color: var(--gray);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.tl-desc li {
+  list-style: none;
+  padding-left: 1.2rem;
+  position: relative;
+  margin-bottom: 0.3rem;
+}
+.tl-desc li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--cyan);
+}
+
+/* ── CONTACT ──────────────────────────────────────────────────── */
+#contact {
+  text-align: center;
+}
+#contact .contact-inner {
+  max-width: 600px;
+  margin: 3rem auto 0;
+}
+#contact p {
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.contact-link {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg2);
+  transition: all 0.2s;
+  letter-spacing: 0.05em;
+}
+.contact-link:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  transform: translateY(-2px);
+}
+
+/* ── Footer ───────────────────────────────────────────────────── */
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--gray);
+}
+footer span { color: var(--cyan); }
+
+/* ── Animations ───────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translate(20px, -50%); }
+  to   { opacity: 1; transform: translate(0, -50%); }
+}
+@keyframes scrollPulse {
+  0%,100% { opacity: 0.4; }
+  50%      { opacity: 1; }
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 4px var(--green); }
+  50%      { box-shadow: 0 0 10px var(--green); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  #hero { padding: 0 1.5rem; }
+  .hero-stats { display: none; }
+  #about .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  #skills .skills-grid { grid-template-columns: 1fr 1fr; }
+  .project-card { grid-template-columns: 1fr; gap: 1rem; }
+  .project-num { font-size: 1.5rem; }
+  .project-aside { align-items: flex-start; }
+}
+@media (max-width: 600px) {
+  #skills .skills-grid { grid-template-columns: 1fr; }
+  section { padding: 4rem 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Curseur -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-logo">MB<span>.dev</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#experience">Expérience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ════════════════════════════════════════════════════ -->
+<div id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">// BTS SIO SISR · Promotion 2024–2026</div>
+    <h1 class="hero-name">
+      Marvyn<br>
+      <span class="line2">Bartolomucci</span>
+    </h1>
+    <p class="hero-desc">
+      Étudiant en <strong>BTS SIO option SISR</strong> à l'École IRIS de Strasbourg.<br>
+      Passionné de réseaux, virtualisation et cybersécurité.<br>
+      En alternance chez <strong>3S Secure – Forbach</strong>.
+    </p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">Voir mes projets</a>
+      <a href="#contact" class="btn btn-outline">Me contacter</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <span class="stat-num">5+</span>
+      <span class="stat-label">projets réalisés</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">2</span>
+      <span class="stat-label">ans de formation</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">Moselle</span>
+      <span class="stat-label">Grand Est</span>
+    </div>
+  </div>
+
+  <div class="scroll-hint">scroll</div>
+</div>
+
+<!-- ═══ À PROPOS ════════════════════════════════════════════════ -->
+<section id="about">
+  <div class="section-label">01 — À propos</div>
+  <h2>Qui suis-je ?</h2>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>
+        Je m'appelle <strong>Marvyn Bartolomucci</strong>, étudiant en 1ère année de
+        <strong>BTS SIO option SISR</strong> à l'École IRIS de Strasbourg.
+        Je me forme à l'administration des systèmes et réseaux, à la virtualisation
+        et à la cybersécurité.
+      </p>
+      <p>
+        En alternance chez <strong>3S Secure à Forbach</strong>, j'interviens sur
+        des infrastructures réelles : configuration de caméras IP, NVR Hikvision,
+        alarmes, réseaux d'entreprise et postes clients.
+      </p>
+      <p>
+        Dans mon homelab personnel, je fais tourner <strong>TrueNAS SCALE sous VMware</strong>,
+        avec WireGuard VPN, Docker, et plusieurs VMs Debian pour expérimenter librement.
+      </p>
+      <p>
+        Je cherche une <strong>entreprise d'accueil pour ma 2ème année</strong>
+        (alternance SISR, septembre 2026, région Moselle / Grand Est).
+      </p>
+    </div>
+    <div class="about-card">
+      <div class="info-row">
+        <span class="info-key">FORMATION</span>
+        <span class="info-val">BTS SIO SISR</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">ÉCOLE</span>
+        <span class="info-val">IRIS Strasbourg</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">ALTERNANCE</span>
+        <span class="info-val">3S Secure, Forbach</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">LOCALISATION</span>
+        <span class="info-val">Farébersviller (57)</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">DISPONIBILITÉ</span>
+        <span class="info-val green">Sept. 2026 →</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">PERMIS</span>
+        <span class="info-val">B · Moto</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COMPÉTENCES ══════════════════════════════════════════════ -->
+<section id="skills">
+  <div class="section-label">02 — Compétences</div>
+  <h2>Stack technique</h2>
+  <div class="skills-grid">
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-title">RÉSEAUX</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-label"><span>TCP/IP · VLAN · VPN</span><span>85%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.85"></div></div>
+        <div class="skill-bar-label"><span>WireGuard · pfSense</span><span>80%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.80"></div></div>
+        <div class="skill-bar-label"><span>Cisco · Packet Tracer</span><span>70%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.70"></div></div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">VLAN</span><span class="tag">NAT</span>
+        <span class="tag">DNS</span><span class="tag">DHCP</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">🖥️</div>
+      <div class="skill-title">VIRTUALISATION</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-label"><span>VMware ESXi</span><span>80%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.80"></div></div>
+        <div class="skill-bar-label"><span>TrueNAS SCALE / KVM</span><span>75%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.75"></div></div>
+        <div class="skill-bar-label"><span>Docker</span><span>78%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.78"></div></div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">ZFS</span><span class="tag">KVM</span>
+        <span class="tag">Docker</span><span class="tag">Proxmox</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">🐧</div>
+      <div class="skill-title">SYSTÈMES</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-label"><span>Linux (Debian/Ubuntu)</span><span>82%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.82"></div></div>
+        <div class="skill-bar-label"><span>Windows Server</span><span>70%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.70"></div></div>
+        <div class="skill-bar-label"><span>PowerShell</span><span>65%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.65"></div></div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">SSH</span><span class="tag">Bash</span>
+        <span class="tag">systemd</span><span class="tag">iptables</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔒</div>
+      <div class="skill-title">CYBERSÉCURITÉ</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-label"><span>Chiffrement / PKI</span><span>70%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.70"></div></div>
+        <div class="skill-bar-label"><span>Pare-feu / ACL</span><span>75%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.75"></div></div>
+        <div class="skill-bar-label"><span>BitLocker / RGPD</span><span>65%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.65"></div></div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">WireGuard</span><span class="tag">SSL/TLS</span>
+        <span class="tag">BitLocker</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">💻</div>
+      <div class="skill-title">DÉVELOPPEMENT</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-label"><span>Python</span><span>70%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.70"></div></div>
+        <div class="skill-bar-label"><span>HTML / CSS / JS</span><span>72%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.72"></div></div>
+        <div class="skill-bar-label"><span>Node.js</span><span>55%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.55"></div></div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">Docker</span><span class="tag">API REST</span>
+        <span class="tag">Git</span>
+      </div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">📷</div>
+      <div class="skill-title">SÉCURITÉ PHYSIQUE</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-label"><span>Hikvision / Dahua NVR</span><span>80%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.80"></div></div>
+        <div class="skill-bar-label"><span>Caméras IP / ONVIF</span><span>75%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.75"></div></div>
+        <div class="skill-bar-label"><span>Systèmes d'alarme</span><span>70%</span></div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="--w:0.70"></div></div>
+      </div>
+      <div class="skill-tags">
+        <span class="tag">TDR</span><span class="tag">PoE</span>
+        <span class="tag">ONVIF</span><span class="tag">SMB</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ PROJETS ══════════════════════════════════════════════════ -->
+<section id="projects">
+  <div class="section-label">03 — Projets</div>
+  <h2>Réalisations</h2>
+  <div class="projects-list">
+
+    <div class="project-card reveal">
+      <div class="project-num">01</div>
+      <div class="project-body">
+        <h3 class="project-title">Stock Manager v3.0</h3>
+        <p class="project-desc">
+          Application web de gestion de stock déployée en Docker sur TrueNAS SCALE.
+          Scan de codes-barres, génération de commandes fournisseurs en PDF,
+          suivi des réservations par chantier, alertes stock bas, export Excel.
+        </p>
+        <div class="project-meta">
+          <span class="project-badge badge-blue">Docker</span>
+          <span class="project-badge badge-cyan">TrueNAS SCALE</span>
+          <span class="project-badge badge-green">Python / Flask</span>
+          <span class="project-badge badge-purple">BTS SIO E5</span>
+        </div>
+      </div>
+      <div class="project-aside">
+        <span class="project-type">PROJET PERSO<br>PORTFOLIO E5</span>
+        <div class="project-status">
+          <div class="dot dot-green"></div>
+          <span style="color:var(--green);font-size:0.68rem;font-family:var(--mono)">Actif – v3.0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">02</div>
+      <div class="project-body">
+        <h3 class="project-title">WireGuard VPN sur Debian VM</h3>
+        <p class="project-desc">
+          Mise en place d'un serveur VPN WireGuard sur une VM Debian 12 hébergée dans TrueNAS SCALE.
+          Configuration du tunnel chiffré (Curve25519), routage IP, iptables NAT,
+          et accès distant sécurisé à l'ensemble de l'infrastructure homelab.
+        </p>
+        <div class="project-meta">
+          <span class="project-badge badge-cyan">WireGuard</span>
+          <span class="project-badge badge-blue">Debian 12</span>
+          <span class="project-badge badge-green">iptables</span>
+          <span class="project-badge badge-purple">BTS SIO E5</span>
+        </div>
+      </div>
+      <div class="project-aside">
+        <span class="project-type">HOMELAB<br>PORTFOLIO E5</span>
+        <div class="project-status">
+          <div class="dot dot-green"></div>
+          <span style="color:var(--green);font-size:0.68rem;font-family:var(--mono)">Opérationnel</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">03</div>
+      <div class="project-body">
+        <h3 class="project-title">Infrastructure TrueNAS SCALE sous VMware</h3>
+        <p class="project-desc">
+          Déploiement complet d'un NAS virtualisé sous VMware ESXi avec pool ZFS en miroir,
+          datasets organisés, VMs KVM internes (Debian), configuration SSH/SCP,
+          et snapshots automatiques planifiés.
+        </p>
+        <div class="project-meta">
+          <span class="project-badge badge-blue">TrueNAS SCALE</span>
+          <span class="project-badge badge-cyan">VMware ESXi</span>
+          <span class="project-badge badge-green">ZFS</span>
+          <span class="project-badge badge-purple">BTS SIO E5</span>
+        </div>
+      </div>
+      <div class="project-aside">
+        <span class="project-type">HOMELAB<br>PORTFOLIO E5</span>
+        <div class="project-status">
+          <div class="dot dot-green"></div>
+          <span style="color:var(--green);font-size:0.68rem;font-family:var(--mono)">Opérationnel</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">04</div>
+      <div class="project-body">
+        <h3 class="project-title">Diagnostic NVR Hikvision (3S Secure)</h3>
+        <p class="project-desc">
+          Diagnostic et résolution d'une panne sur un enregistreur NVR Hikvision :
+          identification d'un câble défectueux via testeur TDR Dahua,
+          remplacement et remise en service des caméras IP.
+        </p>
+        <div class="project-meta">
+          <span class="project-badge badge-blue">Hikvision</span>
+          <span class="project-badge badge-cyan">Caméras IP</span>
+          <span class="project-badge badge-green">TDR Dahua</span>
+        </div>
+      </div>
+      <div class="project-aside">
+        <span class="project-type">ALTERNANCE<br>3S SECURE</span>
+        <div class="project-status">
+          <div class="dot dot-blue"></div>
+          <span style="color:#60a5fa;font-size:0.68rem;font-family:var(--mono)">Résolu</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">05</div>
+      <div class="project-body">
+        <h3 class="project-title">Scan-to-folder HP MFP via SMB</h3>
+        <p class="project-desc">
+          Configuration d'un compte de numérisation réseau sur une imprimante HP MFP
+          pour scan-to-folder en SMB. Résolution d'un problème d'isolation Wi-Fi
+          client bloquant le partage, et création d'un compte utilisateur
+          avec mot de passe non expirant via PowerShell.
+        </p>
+        <div class="project-meta">
+          <span class="project-badge badge-blue">SMB</span>
+          <span class="project-badge badge-cyan">PowerShell</span>
+          <span class="project-badge badge-green">HP MFP</span>
+        </div>
+      </div>
+      <div class="project-aside">
+        <span class="project-type">ALTERNANCE<br>3S SECURE</span>
+        <div class="project-status">
+          <div class="dot dot-blue"></div>
+          <span style="color:#60a5fa;font-size:0.68rem;font-family:var(--mono)">Résolu</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ EXPÉRIENCE ═══════════════════════════════════════════════ -->
+<section id="experience">
+  <div class="section-label">04 — Expérience</div>
+  <h2>Parcours</h2>
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="tl-date">SEPT. 2024 → PRÉSENT</div>
+      <div class="tl-title">Technicien Systèmes & Réseaux — Alternance</div>
+      <div class="tl-company">3S Secure · Forbach (57)</div>
+      <ul class="tl-desc">
+        <li>Déploiement et configuration de systèmes de sécurité (caméras IP, NVR, alarmes)</li>
+        <li>Diagnostic réseau et câblage (testeur TDR, PoE, VLAN)</li>
+        <li>Configuration scan-to-folder SMB, gestion comptes Active Directory</li>
+        <li>Intervention terrain chez clients professionnels</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="tl-date">SEPT. 2024 → PRÉSENT</div>
+      <div class="tl-title">BTS SIO — Option SISR</div>
+      <div class="tl-company">École IRIS · Strasbourg</div>
+      <ul class="tl-desc">
+        <li>Administration systèmes et réseaux, virtualisation, cybersécurité</li>
+        <li>Projets pratiques : VLANs, routage, VPN, Zabbix, Nextcloud</li>
+        <li>Développement d'applications web (E5 portfolio)</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="tl-date">AVANT 2024</div>
+      <div class="tl-title">Micro-entreprise BTP</div>
+      <div class="tl-company">Secteur construction · Moselle</div>
+      <ul class="tl-desc">
+        <li>Gestion de chantiers, plans AutoCAD et SketchUp</li>
+        <li>Reconversion vers l'informatique et les réseaux</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ CONTACT ══════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="section-label" style="justify-content:center">05 — Contact</div>
+  <h2>Travaillons ensemble</h2>
+  <div class="contact-inner reveal">
+    <p>
+      Je suis actuellement à la recherche d'une entreprise d'accueil pour ma
+      <strong>2ème année de BTS SIO SISR</strong> (alternance, septembre 2026,
+      région Moselle / Grand Est). N'hésite pas à me contacter.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:marvyn.bartolomucci@exemple.fr" class="contact-link">
+        ✉ Email
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="contact-link">
+        ⬡ LinkedIn
+      </a>
+      <a href="https://github.com" target="_blank" class="contact-link">
+        ⌥ GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Marvyn Bartolomucci</span> — Portfolio BTS SIO SISR · 2025–2026
+</footer>
+
+<script>
+// ── Curseur custom ─────────────────────────────────────────────
+const cursor = document.getElementById('cursor');
+const ring   = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cursor.style.left = mx - 6 + 'px';
+  cursor.style.top  = my - 6 + 'px';
+});
+
+function animRing() {
+  rx += (mx - rx - 18) * 0.15;
+  ry += (my - ry - 18) * 0.15;
+  ring.style.left = rx + 'px';
+  ring.style.top  = ry + 'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+
+document.querySelectorAll('a, button, .skill-card, .project-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.transform = 'scale(2)';
+    ring.style.transform = 'scale(1.5)';
+    ring.style.borderColor = 'var(--cyan2)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.transform = 'scale(1)';
+    ring.style.transform = 'scale(1)';
+    ring.style.borderColor = 'var(--cyan)';
+  });
+});
+
+// ── Scroll reveal ───────────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      entry.target.style.transitionDelay = (i % 3) * 0.1 + 's';
+      entry.target.classList.add('visible');
+      // Barres de compétences
+      entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        bar.style.width = (parseFloat(bar.style.getPropertyValue('--w')) * 100) + '%';
+        bar.classList.add('animated');
+      });
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── Barres skill init ───────────────────────────────────────────
+document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+  const w = bar.style.getPropertyValue('--w');
+  bar.style.width = '0%';
+  bar.dataset.target = (parseFloat(w) * 100) + '%';
+});
+
+// Fix barres après observer
+const barObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+        setTimeout(() => { bar.style.width = bar.dataset.target; }, 200);
+      });
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.skill-card').forEach(card => barObserver.observe(card));
+</script>
+</body>
+</html>
